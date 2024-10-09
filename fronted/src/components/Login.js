@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import './css/Login.css'; // Import the CSS file
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const  [newpassword,setnewpassword]=useState('')
@@ -27,10 +27,8 @@ const Login = () => {
         email,
         password,
       },{ withCredentials: true });
-
-      
-
       // Redirect to the main page
+      setIsLoggedIn(true);
       navigate('/'); 
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed.');

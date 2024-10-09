@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box; /* Apply box-sizing for consistent sizing */
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Set a default font */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    background-color: #f4f4f4; /* Light gray background for the body */
+}
+
+.post-container {
+    max-width: 900px; /* Set max width for the post container */
+    margin: 0 auto; /* Center align the container */
+    padding: 20px; /* Padding around the content */
+    border-radius: 12px; /* Rounded corners */
+    background-color: #ffffff; /* White background for the post */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow effect for elevation */
+    position: relative; /* Position for absolute elements inside */
+    overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.image {
+    width: 100%; /* Full width for the image */
+    height: 400px; /* Fixed height for a striking image display */
+    overflow: hidden; /* Ensure the image does not overflow */
+    border-radius: 12px 12px 0 0; /* Round the top corners */
+    display: flex; /* Flex layout for centering the image */
+    justify-content: center; /* Center align the image */
+    align-items: center; /* Center align the image */
+}
+
+.image img {
+    width: 100%; /* Make image responsive */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Maintain aspect ratio while covering */
+}
+
+h1 {
+    font-size: 36px; /* Large font size for main title */
+    margin: 20px 0; /* Margin above and below the title */
+    text-align: center; /* Center align the title */
+    color: #333; /* Dark color for title */
+}
+
+h2 {
+    font-size: 28px; /* Size for post title */
+    margin: 10px 0; /* Margin for spacing */
+    text-align: center; /* Center align post title */
+    color: #444; /* Slightly lighter color for post title */
+}
+
+.author {
+    text-align: center; /* Center align the author */
+    font-size: 18px; /* Font size for author name */
+    color: #666; /* Gray color for author name */
+}
+
+.created-at {
+    text-align: center; /* Center align the created date */
+    font-size: 16px; /* Font size for created date */
+    color: #999; /* Light gray color for date */
+    margin-bottom: 20px; /* Space below the date */
+}
+
+p {
+    font-size: 18px; /* Font size for post content */
+    line-height: 1.8; /* Line height for readability */
+    color: #333; /* Dark color for paragraph text */
+    margin: 10px 0; /* Margin around paragraphs */
+}
+
+/* Loader and Error styles */
+.loading {
+    text-align: center; /* Center align loading text */
+    font-size: 24px; /* Larger font size for loading */
+    color: #888; /* Gray color for loading */
+}
+
+.error {
+    text-align: center; /* Center align error text */
+    font-size: 24px; /* Larger font size for error message */
+    color: red; /* Red color for error messages */
+}

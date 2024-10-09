@@ -4,6 +4,11 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Post = require('../models/Post');
+
+const multer = require('multer');
+const path = require('path');
+
 
 
 
@@ -31,6 +36,8 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Error registering user', error });
   }
 });
+
+
 
 // Login Endpoint
 router.post('/login', async (req, res) => {
@@ -188,6 +195,80 @@ router.post('/set-new-password', async (req, res) => {
 
 
 
+/////
+
+const uploadmiddelware= multer({dest:'uploads/' });
+// app.use('../uploads', express.static('../uploads'))
+
+
+// POST route to handle form submission
+router.post('/upload',authenticateToken, uploadmiddelware.single('image'), async(req, res) => {
+  const { title, summary } = req.body;
+ 
+  const author = req.user.id;
+  res.json({files:req.file})
+  const postdoc= await Post.create({
+    title,
+    summary,
+    image:req.file.path,
+    author,
+  })
+
+});
+
+router.get('/getpost', async (req, res) => {
+  try {
+    const posts = await Post.find().populate('author','name'); // Fetch all posts from the database
+    res.status(200).json(posts); // Send the posts as a JSON response
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+router.get('/post/:id', authenticateToken,async (req, res) => {
+  const {id}=req.params
+  try {
+    const post = await Post.findById(id).populate('author','name')
+    res.status(200).json({post,user:req.user}); // Send the posts as a JSON response
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+//edit
+router.put('/post/:id', authenticateToken, uploadmiddelware.single('image'), async (req, res) => {
+  const { title, summary } = req.body;
+  const postId = req.params.id; // Get the post ID from the request parameters
+  const author = req.user.id;
+  console.log("ggg")
+
+  try {
+      // Find the post and update it
+      const post = await Post.findByIdAndUpdate(
+          postId,
+          {
+              title,
+              summary,
+              image: req.file ? req.file.path : undefined, // Use new image if provided
+              author,
+          },
+          { new: true } // Return the updated document
+      );
+
+      if (!post) {
+          return res.status(404).json({ message: 'Post not found' });
+      }
+
+      res.json({ message: 'Post updated successfully', post });
+  } catch (error) {
+      console.error('Error updating post:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
 

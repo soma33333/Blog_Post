@@ -10,6 +10,7 @@ const Logout = () => {
     try {
       await axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true });
       navigate('/'); // Redirect to login after logout
+      console.log('ghj')
     } catch (error) {
       console.error('Logout failed', error);
     }

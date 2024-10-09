@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const routes = require('./routes/auth.js');
 
 const app = express();
+app.use('/uploads', express.static('uploads'));
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());

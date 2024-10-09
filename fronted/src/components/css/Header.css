@@ -1,4 +1,4 @@
-.header{
+/* .header{
     width: 100%;
     height: fit-content;
     display: flex;
@@ -7,4 +7,61 @@
     align-items: center;
     justify-content: center;
     gap: 5rem;
-}
+} */
+
+/* Header.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #282c34; /* Dark background */
+    color: white; /* White text */
+  }
+  
+  .header a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* White link color */
+    margin: 0 1rem; /* Margin between links */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  .header a:hover {
+    color: #61dafb; /* Light blue on hover */
+  }
+  
+  .header h2 {
+    margin: 0; /* Remove default margin */
+  }
+  
+  .header button {
+    background-color: #61dafb; /* Light blue button */
+    color: white; /* White button text */
+    border: none; /* Remove border */
+    padding: 0.5rem 1rem; /* Button padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background transition */
+  }
+  
+  .header button:hover {
+    background-color: #21a1f1; /* Darker blue on hover */
+  }
+  
+  .header div {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .header div:last-child {
+    flex-grow: 1; /* Take up remaining space */
+    justify-content: flex-end; /* Align items to the right */
+  }
+  
