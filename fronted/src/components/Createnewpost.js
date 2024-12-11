@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './css/newpost.css'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import "./css/newpost.css";
+import { useNavigate } from "react-router-dom";
 
 const Createnewpost = () => {
-  const [title, setTitle] = useState('');
-  const [summary, setSummary] = useState('');
+  const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
   const [image, setImage] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -15,34 +15,39 @@ const Createnewpost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Create a FormData object to handle file upload
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('summary', summary);
-    formData.append('image', image);
+    formData.append("title", title);
+    formData.append("summary", summary);
+    formData.append("image", image);
 
     try {
       // Send POST request using axios
-      const response = await axios.post('http://localhost:5000/api/auth/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
         },
-        withCredentials: true, 
-      });
+      );
       // Handle success
-      setMessage('Form submitted successfully!');
-      console.log('Response:', response.data);
+      setMessage("Form submitted successfully!");
+      console.log("Response:", response.data);
 
       // Reset form after submit
-      setTitle('');
-      setSummary('');
+      setTitle("");
+      setSummary("");
       setImage(null);
-      navigate('/')
+      alert("New Post Created  ...");
+      navigate("/");
     } catch (error) {
       // Handle error
-      setMessage('Form submission failed.');
-      console.error('Error:', error);
+      setMessage("Form submission failed.");
+      console.error("Error:", error);
     }
   };
 
@@ -81,7 +86,7 @@ const Createnewpost = () => {
         <button type="submit">Submit</button>
       </form>
 
-  <>{message}</>
+      <>{message}</>
     </div>
   );
 };

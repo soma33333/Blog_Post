@@ -1,21 +1,29 @@
-/* .header{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: row;
-    border: 2px solid black;
-    align-items: center;
-    justify-content: center;
-    gap: 5rem;
-} */
 
-/* Header.css */
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
   }
   
+
+  /* Postpage.css */
+.Project_name {
+  font-size: 2rem;            /* Makes the font size larger */
+  font-weight: bold;          /* Makes the text bold */
+  color: #3498db;             /* Sets the text color */
+  text-transform: uppercase;  /* Transforms the text to uppercase */
+  letter-spacing: 2px;        /* Adds spacing between letters */
+  /* margin: 20px 0;             Adds margin above and below the element */
+  text-align: center;         /* Centers the text */
+  font-family: 'Arial', sans-serif; /* Sets a specific font family */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.Project_name:hover {
+  color: #2980b9;             /* Changes color on hover */
+  cursor: pointer;           /* Changes cursor to pointer on hover */
+}
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -33,27 +41,12 @@ body {
     transition: color 0.3s; /* Smooth color transition on hover */
   }
   
-  .header a:hover {
-    color: #61dafb; /* Light blue on hover */
-  }
-  
+
   .header h2 {
     margin: 0; /* Remove default margin */
   }
   
-  .header button {
-    background-color: #61dafb; /* Light blue button */
-    color: white; /* White button text */
-    border: none; /* Remove border */
-    padding: 0.5rem 1rem; /* Button padding */
-    cursor: pointer; /* Pointer cursor on hover */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth background transition */
-  }
-  
-  .header button:hover {
-    background-color: #21a1f1; /* Darker blue on hover */
-  }
+ 
   
   .header div {
     display: flex; /* Align items horizontally */
@@ -65,3 +58,25 @@ body {
     justify-content: flex-end; /* Align items to the right */
   }
   
+  .link{
+    text-decoration: none;
+  }
+
+  /* Postpage.css */
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;          /* Adjust padding to make it look like a button */
+  background-color: #3498db;   /* Button background color */
+  color: white;                /* Text color */
+  font-size: 16px;             /* Font size */
+  font-weight: bold;           /* Bold text */
+  text-align: center;          /* Center text */
+  text-decoration: none;       /* Remove underline */
+  border-radius: 5px;          /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.button-link:hover {
+  background-color: #2980b9;   /* Change background on hover */
+  cursor: pointer;             /* Change cursor to indicate clickability */
+}

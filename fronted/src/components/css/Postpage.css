@@ -44,7 +44,8 @@ h1 {
 }
 
 h2 {
-    font-size: 28px; /* Size for post title */
+    margin-top: 500px;
+    font-size: 18px; /* Size for post title */
     margin: 10px 0; /* Margin for spacing */
     text-align: center; /* Center align post title */
     color: #444; /* Slightly lighter color for post title */
@@ -82,3 +83,29 @@ p {
     font-size: 24px; /* Larger font size for error message */
     color: red; /* Red color for error messages */
 }
+
+  /* Postpage.css */
+  .button-link {
+    display: inline-block;
+    padding: 10px 20px;          /* Adjust padding to make it look like a button */
+    background-color: #3498db;   /* Button background color */
+    color: white;                /* Text color */
+    font-size: 16px;             /* Font size */
+    font-weight: bold;           /* Bold text */
+    text-align: center;          /* Center text */
+    text-decoration: none;       /* Remove underline */
+    border-radius: 5px;          /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .button-link:hover {
+    background-color: #2980b9;   /* Change background on hover */
+    cursor: pointer;             /* Change cursor to indicate clickability */
+  }
+  
+  .edit-dlt{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+  }
