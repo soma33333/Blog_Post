@@ -5,8 +5,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./css/Login.css"; // Import the CSS file
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = () => {
+  const { setIsLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newpassword, setnewpassword] = useState("");

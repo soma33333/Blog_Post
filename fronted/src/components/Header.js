@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import "./css/Header.css";
+import { useAuth } from "../context/AuthContext"; 
 import axios from "axios";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 
-const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+const Header = () => {
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -9,19 +9,19 @@ import React, { useState } from 'react';
 import Postpage from './components/Postpage';
 import Editpost from './components/Editpost';
 import Search_post from './components/Search_post';
+import { AuthProvider } from "./context/AuthContext"; // Import the provider
 function App() {
-  
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userdetails,setuserdeatails]=useState(null)
+ 
   return (
 
 <>
 
+<AuthProvider>
 <BrowserRouter>
 <Routes>
-    <Route path="/"  element={<Header  isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}>
+    <Route path="/"  element={<Header  />}>
       <Route  index  element={<Home/>}/>
-      <Route  path="login" element={<Login setIsLoggedIn={setIsLoggedIn}/>}/>
+      <Route  path="login" element={<Login />}/>
       <Route path='register' element={<Registration/>}/>
       <Route path='createnewpost' element={<Createnewpost/>}/>
       <Route path='post/:id'  element={<Postpage/>}/>
@@ -29,8 +29,8 @@ function App() {
       <Route path='search'  element={<Search_post/>}/>
     </Route>
 </Routes>
-
 </BrowserRouter>
+</AuthProvider>
 
     
   </>
