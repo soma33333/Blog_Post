@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-// Define the Post schema
 const postSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -13,7 +12,7 @@ const postSchema = new mongoose.Schema({
     trim: true,
   },
   image: {
-    type: String, // This can store the file path or URL of the uploaded image
+    type: String,
     required: true,
   },
   createdAt: {
@@ -26,11 +25,10 @@ const postSchema = new mongoose.Schema({
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
+    ref: "User",
   },
 });
 
-// Create a Post model from the schema
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;

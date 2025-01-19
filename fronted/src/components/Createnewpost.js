@@ -25,7 +25,7 @@ const Createnewpost = () => {
     try {
       // Send POST request using axios
       const response = await axios.post(
-        "http://localhost:5000/api/auth/upload",
+        `${process.env.REACT_APP_API_URL}/api/post/upload`,
         formData,
         {
           headers: {

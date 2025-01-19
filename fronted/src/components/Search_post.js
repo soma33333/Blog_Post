@@ -16,7 +16,7 @@ const SearchPost = () => {
     // Indicate that a search has been triggered
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/search",
+       `${process.env.REACT_APP_API_URL}/api/post/search  `,
         { title,author }, { withCredentials: true }
       );
     setPosts(response.data.posts)

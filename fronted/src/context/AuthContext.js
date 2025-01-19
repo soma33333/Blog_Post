@@ -1,10 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Create the context
 const AuthContext = createContext();
 
-// Custom hook to use AuthContext
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -13,7 +12,7 @@ export const useAuth = () => {
   return context;
 };
 
-// Create the AuthProvider component
+
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,11 +22,11 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.get(
           "http://localhost:5000/api/auth/protected",
           {
-            withCredentials: true, // Include cookies in the request
+            withCredentials: true,
           },
         );
         if (response.status === 200) {
-          setIsLoggedIn(true); // User is logged in
+          setIsLoggedIn(true); 
         }
       } catch (error) {
         console.error(
@@ -37,13 +36,14 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    checkLoginStatus(); // Call the function to check login status
+    checkLoginStatus(); 
   }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
+    
   );
 };
 

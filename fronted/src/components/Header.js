@@ -13,7 +13,7 @@ const Header = () => {
       try {
         // Make a request to the backend to check login status
         const response = await axios.get(
-          "http://localhost:5000/api/auth/protected",
+          `${process.env.REACT_APP_API_URL}/api/post/protected`,
           {
             withCredentials: true, // Include cookies in the request
           },
@@ -35,7 +35,7 @@ const Header = () => {
   const handle_logout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${process.env.REACT_APP_API_URL}/api/user/logout`,
         {},
         { withCredentials: true },
       );
@@ -53,6 +53,7 @@ const Header = () => {
 
   return (
     <>
+    
       <div>
         <div>
           {" "}

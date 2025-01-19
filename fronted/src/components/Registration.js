@@ -4,19 +4,21 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./css/Registration.css"; // Import the CSS file
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/user/register`, {
         name,
         email,
         password,
@@ -25,6 +27,7 @@ const Registration = () => {
       setName("");
       setEmail("");
       setPassword("");
+      navigate('/login');
     } catch (error) {
       setError(error.response?.data?.message || "Registration failed.");
     }

@@ -9,7 +9,7 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+       `${process.env.REACT_APP_API_URL}/api/user/logout`,
         {},
         { withCredentials: true },
       );

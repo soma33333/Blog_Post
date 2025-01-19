@@ -16,7 +16,7 @@ const Postpage = () => {
   
   if (confirmed) {
     try {
-      await axios.delete(`http://localhost:5000/api/auth/post/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/post/post/${id}`, {
         withCredentials: true,
       });
       // After successful deletion, navigate back to the posts list
@@ -35,7 +35,7 @@ const Postpage = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/auth/post/${id}`,
+          `${process.env.REACT_APP_API_URL}/api/post/post/${id}`,
           { withCredentials: true },
         );
         setPosts(response.data.post); // Set the posts state with the fetched posts

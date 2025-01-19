@@ -7,6 +7,7 @@ import "./css/Login.css"; // Import the CSS file
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+
 const Login = () => {
   const { setIsLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${process.env.REACT_APP_API_URL}/api/user/login`,
         {
           email,
           password,
@@ -45,7 +46,7 @@ const Login = () => {
     setError("");
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/email-otp",
+        `${process.env.REACT_APP_API_URL}/api/user/email-otp`,
         {
           email,
         },
@@ -63,7 +64,7 @@ const Login = () => {
     if (genotp == newotp) {
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/auth/set-new-password",
+          `${process.env.REACT_APP_API_URL}/api/user/set-new-password`,
           {
             email,
             newpassword,

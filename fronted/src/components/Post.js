@@ -3,7 +3,7 @@ import "./css/Post.css";
 import { Link } from "react-router-dom";
 
 const Post = ({ _id, title, summary, image, updatedAt, author }) => {
-  const imageUrl = `http://localhost:5000/${image}`;
+  const imageUrl = `${process.env.REACT_APP_API_URL}/${image}`;
   const formattedCreatedAt = new Date(updatedAt).toLocaleDateString();
   return (
     <div>

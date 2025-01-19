@@ -1,5 +1,6 @@
 /* Container for the form */
 .search-container {
+    margin-left: 33.33%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

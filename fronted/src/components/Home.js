@@ -10,7 +10,7 @@ const Home = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/auth/getpost",
+          `${process.env.REACT_APP_API_URL}/api/post/getpost`,
         );
         setPosts(response.data); // Set the posts state with the fetched posts
         console.log(posts);

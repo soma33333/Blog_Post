@@ -28,7 +28,7 @@ const Editpost = () => {
     try {
       // Send POST request using axios
       const response = await axios.put(
-        `http://localhost:5000/api/auth/post/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/post/post/${id}`,
         formData,
         {
           headers: {
@@ -57,7 +57,7 @@ const Editpost = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/auth/post/${id}`,
+          `http://localhost:5000/api/post/post/${id}`,
           { withCredentials: true },
         );
         setTitle(response.data.post.title);
