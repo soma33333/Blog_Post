@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
 
 import axios from "axios";
 import Post from "./Post";
@@ -12,8 +11,8 @@ const Home = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/post/getpost`,
         );
-        setPosts(response.data); // Set the posts state with the fetched posts
-        console.log(posts);
+        setPosts(response.data); 
+            console.log(posts);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -26,7 +25,7 @@ const Home = () => {
       <div className="Home">
         {posts.length > 0 &&
           posts.map((post) => (
-            <Post key={post._id} {...post} /> // Add a unique key prop
+            <Post key={post._id} {...post} /> 
           ))}
       </div>
     </div>

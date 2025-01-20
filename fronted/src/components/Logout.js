@@ -1,4 +1,3 @@
-// src/components/Logout.js
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +12,7 @@ const Logout = () => {
         {},
         { withCredentials: true },
       );
-      navigate("/"); // Redirect to login after logout
+      navigate("/"); 
     } catch (error) {
       console.error("Logout failed", error);
     }

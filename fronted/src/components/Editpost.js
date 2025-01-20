@@ -26,7 +26,7 @@ const Editpost = () => {
     }
 
     try {
-      // Send POST request using axios
+      
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/post/post/${id}`,
         formData,
@@ -37,17 +37,15 @@ const Editpost = () => {
           withCredentials: true,
         },
       );
-      // Handle success
       setMessage("Form submitted successfully!");
       console.log("Response:", response.data);
 
-      // Reset form after submit
+  
       setTitle("");
       setSummary("");
       setImage(null);
       navigate("/");
     } catch (error) {
-      // Handle error
       setMessage("Form submission failed.");
       console.error("Error:", error);
     }
@@ -65,9 +63,7 @@ const Editpost = () => {
       } catch (error) {
         console.error("Error fetching posts:", error);
         setError(error.message);
-      } finally {
-        // Stop loading whether the request succeeded or failed
-      }
+      } 
     };
 
     fetchPosts();

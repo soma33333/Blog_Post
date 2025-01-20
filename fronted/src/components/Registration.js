@@ -1,8 +1,6 @@
-// src/components/Registration.js
-
 import React, { useState } from "react";
 import axios from "axios";
-import "./css/Registration.css"; // Import the CSS file
+import "./css/Registration.css"; 
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
@@ -35,8 +33,7 @@ const Registration = () => {
 
   return (
     <div className="registration-container">
-      {" "}
-      {/* Apply the container class */}
+      {" "}\
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
         <input
@@ -61,7 +58,6 @@ const Registration = () => {
           required
         />
         {error && <p className="error">{error}</p>}{" "}
-        {/* Apply the error class */}
         <button type="submit">Register</button>
         <p>
           Already have an account?{" "}

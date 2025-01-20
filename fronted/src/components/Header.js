@@ -11,15 +11,14 @@ const Header = () => {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        // Make a request to the backend to check login status
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/post/protected`,
           {
-            withCredentials: true, // Include cookies in the request
+            withCredentials: true,
           },
         );
         if (response.status === 200) {
-          setIsLoggedIn(true); // User is logged in
+          setIsLoggedIn(true);
         }
       } catch (error) {
         console.error(
@@ -29,8 +28,8 @@ const Header = () => {
       }
     };
 
-    checkLoginStatus(); // Call the function to check login status
-  }, []); // Empty dependency array means this effect runs once on mount
+    checkLoginStatus(); 
+  }, []);
 
   const handle_logout = async () => {
     try {
@@ -39,7 +38,7 @@ const Header = () => {
         {},
         { withCredentials: true },
       );
-      navigate("/"); // Redirect to login after logout
+      navigate("/"); 
 
       setIsLoggedIn(false);
     } catch (error) {

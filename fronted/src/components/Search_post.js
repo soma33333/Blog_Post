@@ -11,9 +11,7 @@ const SearchPost = () => {
   const [search, setSearch] = useState(false);
 
   const handleSearch = async () => {
-    setError(""); // Clear previous errors
-   
-    // Indicate that a search has been triggered
+    setError(""); 
     try {
       const response = await axios.post(
        `${process.env.REACT_APP_API_URL}/api/post/search  `,
@@ -57,7 +55,7 @@ const SearchPost = () => {
           {posts && posts.length > 0 ? (
             <div className="Home">
               {posts.map((post) => (
-                <Post key={post._id} {...post} /> // Unique key for each post
+                <Post key={post._id} {...post} /> 
               ))}
             </div>
           ) : (

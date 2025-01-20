@@ -1,9 +1,7 @@
-// src/components/Login.js
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./css/Login.css"; // Import the CSS file
+import "./css/Login.css"; 
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,7 +14,7 @@ const Login = () => {
   const [newotp, setnewotp] = useState("");
   const [genotp, setgenotp] = useState("");
   const [error, setError] = useState("");
-  const [forgot, setForgot] = useState(false); // State to track forgot password mode
+  const [forgot, setForgot] = useState(false); 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -32,7 +30,6 @@ const Login = () => {
         },
         { withCredentials: true },
       );
-      // Redirect to the main page
       setIsLoggedIn(true);
       alert("Your are Logged  In ...");
       navigate("/");
@@ -71,9 +68,9 @@ const Login = () => {
           },
         );
 
-        alert("New password is updated."); // Add a notification
+        alert("New password is updated.");
         navigate("/login");
-        setForgot(false); // Reset to login view
+        setForgot(false);
         setnewotp(0);
       } catch (error) {
         setError(error.response?.data?.message || "Failed to send reset link.");
@@ -132,7 +129,6 @@ const Login = () => {
           </>
         )}
         {error && <p className="error">{error}</p>}{" "}
-        {/* Apply the error class */}
         <button type="submit">{forgot ? "Change password" : "Login"}</button>
         <p>
           Don't have an account?{" "}

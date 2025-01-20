@@ -15,15 +15,12 @@ const Createnewpost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Create a FormData object to handle file upload
     const formData = new FormData();
     formData.append("title", title);
     formData.append("summary", summary);
     formData.append("image", image);
 
     try {
-      // Send POST request using axios
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/post/upload`,
         formData,
@@ -34,18 +31,14 @@ const Createnewpost = () => {
           withCredentials: true,
         },
       );
-      // Handle success
       setMessage("Form submitted successfully!");
       console.log("Response:", response.data);
-
-      // Reset form after submit
       setTitle("");
       setSummary("");
       setImage(null);
       alert("New Post Created  ...");
       navigate("/");
     } catch (error) {
-      // Handle error
       setMessage("Form submission failed.");
       console.error("Error:", error);
     }

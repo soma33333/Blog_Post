@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import Postpage from './components/Postpage';
 import Editpost from './components/Editpost';
 import Search_post from './components/Search_post';
-import { AuthProvider } from "./context/AuthContext"; // Import the provider
+import { AuthProvider } from "./context/AuthContext"; 
 function App() {
  
   return (
