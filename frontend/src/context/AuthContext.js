@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     const checkLoginStatus = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/auth/protected",
+          "http://localhost:5000/api/loginstatus",
           {
             withCredentials: true,
           },

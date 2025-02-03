@@ -4,17 +4,39 @@ import "./css/newpost.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Editpost = () => {
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
-
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
-  const [error, setError] = useState(null);
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  // Fetch post details on mount to pre-fill the form
+  useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/getpostbyid/${id}`,
+          { withCredentials: true }
+        );
+        const post = response.data.post;
+        setTitle(post.title);
+        setSummary(post.summary);
+        // If there's an image URL or path, store it to display
+        setImage(post.image); // Assuming post.image contains the image URL or path
+      } catch (error) {
+        setError("Error fetching post details.");
+        console.error("Error:", error);
+      }
+    };
+
+    fetchPostData();
+  }, [id]);
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleupdate = async (e) => {
     e.preventDefault();
@@ -26,82 +48,71 @@ const Editpost = () => {
     }
 
     try {
-      
       const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/post/post/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/update_post/${id}`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
           withCredentials: true,
-        },
+        }
       );
-      setMessage("Form submitted successfully!");
+      setMessage("Post updated successfully!");
       console.log("Response:", response.data);
 
-  
       setTitle("");
       setSummary("");
       setImage(null);
-      navigate("/");
+      navigate("/"); // Navigate to another page, such as home or post list
     } catch (error) {
-      setMessage("Form submission failed.");
+      setMessage("Post update failed.");
       console.error("Error:", error);
     }
   };
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/post/post/${id}`,
-          { withCredentials: true },
-        );
-        setTitle(response.data.post.title);
-        setSummary(response.data.post.summary);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-        setError(error.message);
-      } 
-    };
-
-    fetchPosts();
-  }, [id]);
-
   return (
     <div>
-      <div>
-        <form onSubmit={handleupdate}>
-          <div>
-            <label>Title:</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
+      <form onSubmit={handleupdate}>
+        <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
 
-          <div>
-            <label>Summary:</label>
-            <textarea
-              value={summary}
-              onChange={(e) => setSummary(e.target.value)}
-              required
-            />
-          </div>
+        <div>
+          <label>Summary:</label>
+          <textarea
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
+            required
+          />
+        </div>
 
-          <div>
-            <label>Image:</label>
-            <input type="file" accept="image/*" onChange={handleImageChange} />
-          </div>
+        <div>
+          <label>Image:</label>
+          {/* Display existing image if available */}
+          {image && (
+            <div>
+              <img
+                src={`${process.env.REACT_APP_API_URL}/${image}`}
+                alt="Current Post Image"
+                style={{ width: "200px", height: "auto", marginBottom: "10px" }}
+              />
+            </div>
+          )}
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+        </div>
 
-          <button type="submit">Update</button>
-        </form>
-      </div>
+        <button type="submit">Update</button>
+      </form>
 
-      <>{message}</>
+      {message && <p>{message}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };

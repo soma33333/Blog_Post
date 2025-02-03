@@ -2,7 +2,7 @@ import React from "react";
 import "./css/Post.css";
 import { Link } from "react-router-dom";
 
-const Post = ({ _id, title, summary, image, updatedAt, author }) => {
+const Post = ({ _id, title, summary, image, updatedAt, Contributer }) => {
   const imageUrl = `${process.env.REACT_APP_API_URL}/${image}`;
   const formattedCreatedAt = new Date(updatedAt).toLocaleDateString();
   return (
@@ -20,7 +20,7 @@ const Post = ({ _id, title, summary, image, updatedAt, author }) => {
           </Link>
           <h3 className="truncated">Summary : {summary}</h3>
           <h3>Created At :{formattedCreatedAt}</h3>
-          <h3>author :{author.name}</h3>
+          <h3>Contributer :{Contributer.name}</h3>
         </div>
       </div>
     </div>

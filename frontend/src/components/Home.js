@@ -9,7 +9,7 @@ const Home = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/post/getpost`,
+          `${process.env.REACT_APP_API_URL}/api/getpost`,
         );
         setPosts(response.data); 
             console.log(posts);

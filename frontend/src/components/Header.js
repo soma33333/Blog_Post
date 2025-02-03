@@ -8,33 +8,10 @@ const Header = () => {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/post/protected`,
-          {
-            withCredentials: true,
-          },
-        );
-        if (response.status === 200) {
-          setIsLoggedIn(true);
-        }
-      } catch (error) {
-        console.error(
-          "Not logged in:",
-          error.response ? error.response.data.message : "Error occurred",
-        );
-      }
-    };
-
-    checkLoginStatus(); 
-  }, []);
-
   const handle_logout = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/logout`,
+        `${process.env.REACT_APP_API_URL}/api/logout`,
         {},
         { withCredentials: true },
       );

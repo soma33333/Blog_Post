@@ -23,7 +23,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/login`,
+        `${process.env.REACT_APP_API_URL}/api/login`,
         {
           email,
           password,
@@ -43,7 +43,7 @@ const Login = () => {
     setError("");
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/email-otp`,
+        `${process.env.REACT_APP_API_URL}/api/get-otp`,
         {
           email,
         },
@@ -61,7 +61,7 @@ const Login = () => {
     if (genotp == newotp) {
       try {
         const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/api/user/set-new-password`,
+          `${process.env.REACT_APP_API_URL}/api/setpassword`,
           {
             email,
             newpassword,
