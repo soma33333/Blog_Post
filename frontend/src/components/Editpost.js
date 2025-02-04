@@ -58,6 +58,7 @@ const Editpost = () => {
           withCredentials: true,
         }
       );
+      alert("Post updated successfully!")
       setMessage("Post updated successfully!");
       console.log("Response:", response.data);
 

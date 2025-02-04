@@ -41,6 +41,7 @@ const createPost = async (req, res) => {
     if (title) updateFields.title = title;
     if (summary) updateFields.summary = summary;
     if (req.file) updateFields.image = req.file.path;
+    updateFields.updatedAt=Date.now()
   
     try {
       if (Object.keys(updateFields).length === 0) {
@@ -83,7 +84,6 @@ const getpost_byid= async (req, res) => {
 
 
 const delete_postbyid=async (req, res) => {
-    console.log("ghjk")
   try {
     const post = await Post.findById(req.params.id);
 
@@ -116,31 +116,15 @@ const  get_post= async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
       }
   };
-  
 
-
-  const search_post=async (req, res) => {
-    const { title, Contributer } = req.body;
+  const search_post = async (req, res) => {
+    const { query } = req.query; // Extract search query
   
     try {
-      let ContributerId = null;
-  
-      if (Contributer) {
-        const user = await User.findOne({ name: new RegExp(Contributer, "i") });
-        if (user) {
-          ContributerId = user._id;
-        }
-      }
-  
-      const posts = await Post.find({
-        $and: [{ title: new RegExp(title, "i") }, { Contributer: ContributerId }],
-      });
-  
-      if (posts.length === 0) {
-        return res
-          .status(404)
-          .json({ message: "No posts found matching the criteria" });
-      }
+      // If query exists, search by post title; otherwise, return all posts
+      const posts = await Post.find(
+        query ? { title: { $regex: query, $options: "i" } } : {}
+      );
   
       res.json({
         message: "Posts found successfully",
@@ -149,11 +133,23 @@ const  get_post= async (req, res) => {
       });
     } catch (error) {
       console.error("Search Error:", error);
-      res
-        .status(500)
-        .json({ message: "Error while searching", error: error.message });
+      res.status(500).json({
+        message: "Error while searching",
+        error: error.message,
+      });
     }
   };
+    
+  
+const get_receiver=async(req,res)=>{
+  const { id } = req.params;
+    try {
+      const post = await Post.findById(id).populate("Contributer", "name email");
+      res.status(200).json({ post });
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+}
 
-
-module.exports={createPost,get_post,getpost_byid,update_post,delete_postbyid,search_post}
+module.exports={createPost,get_post,getpost_byid,update_post,delete_postbyid,search_post,get_receiver}

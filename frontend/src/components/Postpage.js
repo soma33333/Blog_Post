@@ -68,7 +68,7 @@ const Postpage = () => {
       {Contributer.id == post.Contributer._id && (
         <div className="edit-dlt">
           <Link className="button-link" to={`/edit/${post._id}`}><h2>Edit post</h2> </Link>
-          
+          <Link className="button-link" to={`/contact/${post._id}`}><h2>Contact</h2></Link>
           <button className="button-link" onClick={handledelete}><h2>Delete post</h2></button>
         </div>
         
@@ -78,6 +78,7 @@ const Postpage = () => {
 
       {post ? (
         <>
+          <Link className="button-link" to={`/contact/${post._id}`}><h2>Contact</h2></Link>
           <div className="image">
             <img src={`http://localhost:5000/${post.image}`} alt={post.title} />
           </div>

@@ -41,7 +41,7 @@ const Login= async (req, res) => {
         return res.status(400).json({ message: "Invalid password" });
       }
   
-      const token = jwt.sign({ id: user._id }, "secretkey", { expiresIn: "1h" });
+      const token = jwt.sign({ id: user._id,name:user.name,email:user.email }, "secretkey", { expiresIn: "1h" });
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -141,7 +141,7 @@ const setpassword= async (req, res) => {
   // Middleware to check if the user is authenticated using JWT token
 
   const   login_status= async (req, res) => {
-    res.status(200)
+    res.status(200).json({ user: req.user });
    
   };
   

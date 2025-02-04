@@ -10,6 +10,7 @@ import Postpage from './components/Postpage';
 import Editpost from './components/Editpost';
 import Search_post from './components/Search_post';
 import { AuthProvider } from "./context/AuthContext"; 
+import Contact from './components/Contact';
 function App() {
  
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path='post/:id'  element={<Postpage/>}/>
       <Route path='edit/:id'  element={<Editpost/>}/>
       <Route path='search'  element={<Search_post/>}/>
+      <Route path='contact/:id' element={<Contact/>}/>
     </Route>
 </Routes>
 </BrowserRouter>

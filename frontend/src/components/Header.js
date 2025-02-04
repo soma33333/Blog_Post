@@ -4,8 +4,11 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 
+
 const Header = () => {
+  
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const  {user,setUser}=useAuth();
   const navigate = useNavigate();
 
   const handle_logout = async () => {
@@ -23,10 +26,12 @@ const Header = () => {
     }
   };
 
-  const handlesearch=()=>{
-    navigate("/search")
-  }
+  // useEffect(()=>{
 
+
+  // },[name])
+
+  
   return (
     <>
     
@@ -40,14 +45,14 @@ const Header = () => {
         <div className="header">
           {isLoggedIn ? (
             <>
+
               <Link to="/createnewpost"  className="button-link">Create new post</Link>
-              <button onClick={handlesearch} className="button-link">Search post</button>
+              <h3>Profile_name :{user.name}</h3>
               <button onClick={handle_logout} className="button-link">Logout</button>
             </>
           ) : (
             <>
               <Link to="/login"  className="button-link">login</Link>
-              <button onClick={handlesearch} className="button-link">Search post</button>
               <Link to="/register" className="button-link">register</Link>
             </>
           )}
