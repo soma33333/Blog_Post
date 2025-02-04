@@ -1,7 +1,4 @@
 const Post = require("../models/Post");
-const User = require("../models/User");
-const multer = require("multer");
-const jwt = require("jsonwebtoken");
 
 
 
@@ -84,17 +81,12 @@ const getpost_byid= async (req, res) => {
 
 
 const delete_postbyid=async (req, res) => {
+  console.log("qqq")
   try {
     const post = await Post.findById(req.params.id);
-
+    console.log("lllllllllllllllll")
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
-    }
-
-    if (post.user.toString() !== req.user.id) {
-      return res
-        .status(403)
-        .json({ message: "You are not authorized to delete this post" });
     }
 
     await Post.findByIdAndDelete(req.params.id);

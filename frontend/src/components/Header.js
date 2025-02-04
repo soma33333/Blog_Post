@@ -26,10 +26,7 @@ const Header = () => {
     }
   };
 
-  // useEffect(()=>{
 
-
-  // },[name])
 
   
   return (
@@ -47,7 +44,7 @@ const Header = () => {
             <>
 
               <Link to="/createnewpost"  className="button-link">Create new post</Link>
-              <h3>Profile_name :{user.name}</h3>
+              <h3>Profile_name: {user?.name || "Loading..."}</h3>
               <button onClick={handle_logout} className="button-link">Logout</button>
             </>
           ) : (
