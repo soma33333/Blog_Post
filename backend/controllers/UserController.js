@@ -2,7 +2,8 @@ const User=require("../models/User")
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-
+const dotenv = require("dotenv");
+dotenv.config({ path: `${__dirname}/../.env` });
 
 
 
@@ -41,7 +42,7 @@ const Login= async (req, res) => {
         return res.status(400).json({ message: "Invalid password" });
       }
   
-      const token = jwt.sign({ id: user._id,name:user.name,email:user.email }, "secretkey", { expiresIn: "1h" });
+      const token = jwt.sign({ id: user._id,name:user.name,email:user.email }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -50,7 +51,6 @@ const Login= async (req, res) => {
   
       res.json({ message: "Logged in successfully" });
     } catch (error) {
-      console.log(error)
       res.status(500).json({ message: "Error logging in", error });
     }
   };
@@ -138,8 +138,7 @@ const setpassword= async (req, res) => {
 
 
 
-  // Middleware to check if the user is authenticated using JWT token
-
+ 
   const   login_status= async (req, res) => {
     res.status(200).json({ user: req.user });
    

@@ -3,7 +3,6 @@ import "./css/Post.css";
 import { Link } from "react-router-dom";
 
 const Post = ({ _id, title, summary, image,createdAt, updatedAt, Contributer }) => {
-  const imageUrl = `${process.env.REACT_APP_API_URL}/${image}`;
   const formattedCreatedAt = new Date(createdAt).toLocaleDateString();
   const formattedUpdateddAt = new Date(updatedAt).toLocaleDateString();
   return (
@@ -11,7 +10,7 @@ const Post = ({ _id, title, summary, image,createdAt, updatedAt, Contributer }) 
       <div className="container">
         <Link to={`post/${_id}`}>
           <div className="imag">
-            <img src={imageUrl} alt={title} />
+            <img src={image} alt={title} />
           </div>
         </Link>
 
