@@ -22,6 +22,10 @@ app.use(
 
 app.use(express.json());
 
+app.get("/check",(req,res)=>{
+  res.send("ya its working")
+})
+
 // Import routes
 const User_router = require("./routes/UserRouter");
 const Post_router = require("./routes/PostRouter");
