@@ -45,7 +45,8 @@ const Login= async (req, res) => {
       const token = jwt.sign({ id: user._id,name:user.name,email:user.email }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
       res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production",  // Ensure HTTPS in production
+        sameSite: "none",  // Required for cross-site cookies
         maxAge: 3600000,
       });
   

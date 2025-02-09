@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     const checkLoginStatus = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/loginstatus",
+         `${process.env.REACT_APP_API_URL}/api/loginstatus`,
           { withCredentials: true }
         );
 

@@ -16,7 +16,7 @@ app.use(
     origin: process.env.FRONTEND_URL, 
     credentials: true, 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
+    allowedHeaders: "*",
   })
 );
 
