@@ -23,8 +23,7 @@ const Editpost = () => {
         const post = response.data.post;
         setTitle(post.title);
         setSummary(post.summary);
-        // If there's an image URL or path, store it to display
-        setImage(post.image); // Assuming post.image contains the image URL or path
+        setImage(post.image); 
       } catch (error) {
         setError("Error fetching post details.");
         console.error("Error:", error);
@@ -96,11 +95,10 @@ const Editpost = () => {
 
         <div>
           <label>Image:</label>
-          {/* Display existing image if available */}
           {image && (
             <div>
               <img
-                src={`${process.env.REACT_APP_API_URL}/${image}`}
+                src={image}               
                 alt="Current Post Image"
                 style={{ width: "200px", height: "auto", marginBottom: "10px" }}
               />

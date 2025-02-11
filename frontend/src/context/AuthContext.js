@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useLayoutEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -25,8 +25,7 @@ export const AuthProvider = ({ children }) => {
 
         if (response.status === 200 && response.data.user) {
           setIsLoggedIn(true);
-          setUser(response.data.user); // Store user details
-          // console.log("User Details:", response.data.user);
+          setUser(response.data.user); 
         }
       } catch (error) {
         console.error(
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     checkLoginStatus();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, user, setIsLoggedIn, setUser }}>

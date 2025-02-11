@@ -7,7 +7,7 @@ require("dotenv").config();
 connectDB();
 
 const app = express();
-const server = http.createServer(app); // ✅ Create HTTP server
+const server = http.createServer(app); 
 
 app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
@@ -16,7 +16,7 @@ app.use(
     origin: process.env.FRONTEND_URL, 
     credentials: true, 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "*",
+    allowedHeaders: "Content-Type,Authorization",
   })
 );
 

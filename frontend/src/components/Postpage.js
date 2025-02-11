@@ -135,7 +135,7 @@ const Postpage = () => {
       {post ? (
         <>
           <div className="image">
-            <img src={`http://localhost:5000/${post.image}`} alt={post.title} />
+            <img src={post.image} alt={post.title} />
           </div>
           <h1>{post.title}</h1>
           <p className="author">

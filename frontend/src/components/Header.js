@@ -18,9 +18,9 @@ const Header = () => {
         {},
         { withCredentials: true },
       );
-      navigate("/"); 
-
+      setUser([])
       setIsLoggedIn(false);
+      navigate("/"); 
     } catch (error) {
       console.error("Logout failed", error);
     }
